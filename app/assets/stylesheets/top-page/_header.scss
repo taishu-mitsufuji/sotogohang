@@ -1,0 +1,23 @@
+.header {
+  // color: white;
+  background-color: lightgreen;
+  height: 60px;
+  padding: 0 100px;
+  display: flex;
+  justify-content: space-between;
+  a{text-decoration: none;}
+  border-bottom: solid 2px;
+  border-color: lightgreen;
+  &__title {
+  width: 200px;
+  height: 60px;
+  font-size: 30px;
+  line-height: 60px;
+  }
+  &__right  {
+  width: 200px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  }
+}
