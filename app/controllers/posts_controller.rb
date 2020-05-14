@@ -3,6 +3,11 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     3.times { @post.images.build }
+    @category_parent_array = ["---"]
+      #データベースから、親カテゴリーのみ抽出し、配列化
+    # Category.where(ancestry: nil).each do |parent|
+    #     @category_parent_array << parent.name
+    # end
   end
 
   def create
@@ -28,24 +33,24 @@ class PostsController < ApplicationController
   end
 
 end
-def new
-    if session[:item]
-      @brand_name = session[:item]["brand_id"].nil? ? "" : Brand.find(session[:item]["brand_id"]).name
-       session[:item].clear if @item = Item.new(session[:item])
-    else
-      @item = Item.new
-    end
-    3.times { @item.images.build }
-  end
+# def new
+#     if session[:item]
+#       @brand_name = session[:item]["brand_id"].nil? ? "" : Brand.find(session[:item]["brand_id"]).name
+#        session[:item].clear if @item = Item.new(session[:item])
+#     else
+#       @item = Item.new
+#     end
+#     3.times { @item.images.build }
+#   end
 
-  def create
-    # binding.pry
-    @item = Item.new(params_item)
-    if @item.save
-      flash[:notice] = "商品を登録しました"
-      redirect_to @item
-    else
-      session[:item] = @item
-      redirect_to new_item_path, flash: { errors: @item.errors.full_messages }
-    end
-  end
+#   def create
+#     # binding.pry
+#     @item = Item.new(params_item)
+#     if @item.save
+#       flash[:notice] = "商品を登録しました"
+#       redirect_to @item
+#     else
+#       session[:item] = @item
+#       redirect_to new_item_path, flash: { errors: @item.errors.full_messages }
+#     end
+#   end

@@ -1,0 +1,24 @@
+.itemBody {
+  padding: 100px;
+  display: flex;
+  justify-content: center;
+  &__main {
+    &__form {
+      &__title {
+        margin-bottom: 50px;
+      }
+      &__category {
+        margin-bottom: 50px;
+      }
+      &__headerImage {
+        margin-bottom: 50px;
+      }
+      &__image {
+        margin-bottom: 50px;
+      }
+      &__content {
+        margin-bottom: 50px;
+      }
+    }
+  }
+}

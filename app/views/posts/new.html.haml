@@ -1,84 +1,84 @@
-.productBody
-  .productBody__main
+.itemBody
+  .itemBody__main
     - if flash[:errors].present?
       %ul.errors
         - flash[:errors].each do |error|
           %p
             %i
               = "* #{error}"
-    = form_with(model: @item, local: true,class: "productBody__main__form") do |f|
-      .productBody__main__form__image
-        .productBody__main__form__image__set
-          %span.productBody__main__form__image__set__text
+    = form_with(model: @post, local: true,class: "productBody__main__form") do |f|
+      .itemBody__main__form__title
+        .itemBody__main__form__title__box
+          = f.label :title, "タイトル",class: ".productBody__main__form__title__box__label"
+          .itemBody__main__form__nameArea__box__must
+        .itemBody__main__form__title__field
+          = f.text_field :name, placeholder: "40字まで", maxlength: "40",class: ".productBody__main__form__title__field__aaa"
+      .itemBody__main__form__category
+        .productBody__main__form__category__box
+          = f.label "カテゴリー", class: ".productBody__main__form__category__box__label"
+          .productBody__main__form__category__box__must 必須
+          .productBody__main__form__category__field
+            .productBody__main__form__category__field__box
+              = f.select :category, @category_parent_array, {}, {class: 'productBody__main__form__category__field__box--select', id: 'parent_category'}
+              %i.fas.fa-chevron-down.listing-select-wrapper__box--arrow-down
+          -# = f.select :category, options_for_select(@parents.map{|c|[c[:name], c[:id]]}), {include_blank: '選択して下さい'}, {id: 'parentsArea'}
+      
+      
+      -# .listing-form-box
+      -#   .listing-product-detail__category
+      -#     = f.label 'カテゴリー', class: 'listing-default__label'
+      -#     %span.listing-default--require 必須
+      -#     .listing-select-wrapper
+      -#       .listing-select-wrapper__box
+      -#         //親カテゴリーのセレクトボックスの生成
+      -#         = f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+      -#         %i.fas.fa-chevron-down.listing-select-wrapper__box--arrow-down
+      
+      
+      
+      
+      
+      
+      
+      
+      .itemBody__main__form__headerImage 
+        投稿ヘッダー画像
+        = f.file_field :header_image, class: ".productBody__main__form__headerImage__field"
+      .itemBody__main__form__image
+        .itemBody__main__form__image__set
+          %span.itemBody__main__form__image__set__text
             画像
-          %span.productBody__main__form__image__set__must
+          %span.itemBody__main__form__image__set__must
             必須
           ※１枚以上
-        .productBody__main__form__image__box
-          = f.fields_for :images,class: "productBody__main__form__image__box__form" do |i|
-            .productBody__main__form__image__box__form__set
+        .itemBody__main__form__image__box#image-box__container
+          - if @images
+            .item-image
+              = image_tag @images[0].image.url ,id: "preview0", size: "100x95"
+              - if @images.count >= 2
+                - for i in 1..(@images.count-1)
+                  = image_tag @images[i].image.url ,id: "preview#{i}", size: "100x95"
+          - else
+            .item-image
+              %img#preview0/
+              %img#preview1/
+              %img#preview2/
+        .itemBody__main__form__image__boxes
+          = f.fields_for :images,class: "itemBody__main__form__image__box__form" do |i|
+            .itemBody__main__form__image__boxes__form__set
               = i.label :image, "画像",class: "productBody__main__form__image__box__form__set__label" do
-                %i.fas.fa-camera.fa-5x
-                = i.file_field :image,class: "productBody__main__form__image__box__form__set__field", style: "display: none"
-      .productBody__main__form__nameArea
-        .productBody__main__form__nameArea__box
-          = f.label :name, "商品名",class: ".productBody__main__form__nameArea__box__label"
-          .productBody__main__form__nameArea__box__must 必須
-        .productBody__main__form__nameArea__field
-          = f.text_field :name, placeholder: "40字まで", maxlength: "40",class: ".productBody__main__form__nameArea__field__aaa"
-      .productBody__main__form__explanation
-        .productBody__main__form__explanation__box
-          = f.label :explannation, "商品の説明",class: ".productBody__main__form__explanation__box__label"
-          .productBody__main__form__explanation__box__must 必須
-        .productBody__main__form__explanation__field
-          = f.text_area :explannation, placeholder:"商品の説明（必須 1,000文字以内）\n（色、素材、重さ、定価、注意点など）\n\n 例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
-      %p 商品の詳細
-      .productBody__main__form__category
-        .productBody__main__form__category__box
-          = f.label :category_id, "カテゴリー",class: ".productBody__main__form__category__box__label"
-          .productBody__main__form__category__box__must 必須
-        .productBody__main__form__category__field
-          = f.select :category, options_for_select(@parents.map{|c|[c[:name], c[:id]]}), {include_blank: '選択して下さい'}, {id: 'parentsArea'}
-      .productBody__main__form__brand
-        .productBody__main__form__brand__box
-          = f.label :brand_name, "ブランド名",class: ".productBody__main__form__brand__box__label"
-          .productBody__main__form__brand__box__mustGray 任意
-        .productBody__main__form__brand__field
-          = f.text_field :brand_name, placeholder: "例) シャネル", maxlength: "40", value: @brand_name
-      .productBody__main__form__status
-        .productBody__main__form__status__box
-          = f.label :status, "商品の状態",class: ".productBody__main__form__status__box__label"
-          .productBody__main__form__status__box__must 必須
-        .productBody__main__form__status__field
-          = f.select :status, ['新品、未使用', '未使用に近い', '目立った傷や汚れなし', 'やや傷や汚れあり', '傷や汚れあり', '全体的に状態が悪い'], {include_blank: '選択して下さい'}
-      .productBody__main__form__size
-        .productBody__main__form__size__box
-          = f.label :size, "サイズ",class: "productBody__main__form__size__box__label"
-          .productBody__main__form__size__box__must 必須
-        .productBody__main__form__size__field
-          = f.text_field :size, maxlength: "40"
-      %p 配送について
-      .productBody__main__form__burden
-        .productBody__main__form__burden__box
-          = f.label :shipper, "配送料の負担",class: "productBody__main__form__burden__box__label"
-          .productBody__main__form__burden__box__must 必須
-        .productBody__main__form__burden__field
-          = f.select :shipper, [['送料込み(出品者負担)', true], ['着払い(購入者負担)', false]], {include_blank: '選択して下さい'}
-      .productBody__main__form__days
-        .productBody__main__form__days__box
-          = f.label :lead_time, "発送までの日数",class: "productBody__main__form__days__box__label"
-          .productBody__main__form__days__box__must 必須
-        .productBody__main__form__days__box__field
-          = f.select :lead_time, [['1~2日で発送', 0], ['2~3日で発送', 1],['4~7日で発送', 2]], {include_blank: '選択して下さい'}
-      %p 価格（¥300〜9,999,999）
-      = f.submit "出品する", class: "productBody__main__form__exhibition"
-    = link_to "#" do
-      %button{class: "productBody__main__form__draft", type: "submit"}下書きに保存
+                %i.fas.fa-camera.fa-2x#img_file
+                  = i.file_field :image,class: "productBody__main__form__image__box__form__set__field", style: "display: none"
+      .itemBody__main__form__content
+        .productBody__main__form__content__box
+          = f.label :content, "説明",class: ".productBody__main__form__content__box__label"
+          .productBody__main__form__content__box__must
+        .productBody__main__form__content__field
+          = f.text_area :content,cols:"110", rows:"21", maxlength:'5', placeholder:"お店・料理の説明（必須 1,000文字以内）\n（場所、お値段、注意点など）\n\n 例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+      = f.submit "投稿する", class: "itemBody__main__form__exhibition"
     -if params[:acion] == "edit"
       = link_to "items/#{@item.id}",method: :delete, data: { confirm:"商品を削除してよろしいですか?" } do
         %button{class: "productBody__main__form__delete", type: "submit"}削除
     %br/
     .productBody__main__back
       = link_to "もどる", :back,class: "productBody__main__back__btn"
-    .productBody__main__notes
-      禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして加盟店規約に同意したことになります。
