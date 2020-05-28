@@ -1,0 +1,28 @@
+.main {
+  height: 100vh;
+  padding: 100px;
+  background-color: #f5f5f5;
+  &__content {
+    background-color: white;
+    &__postBox {
+      &__title {
+        font-size: 32px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+      }
+      &__zone {
+
+      }
+      &__images {
+
+      }
+      &__expla {
+        display: flex;
+        justify-content: center;
+        border: solid 0.2px;
+        border-radius: 5px;
+      }
+    }
+  }
+}

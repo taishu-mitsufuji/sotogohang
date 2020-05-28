@@ -1,20 +1,29 @@
 class PostsController < ApplicationController
 
-  def new
-    @post = Post.new
-    3.times { @post.images.build }
-    @category_parent_array = ["---"]
-      #データベースから、親カテゴリーのみ抽出し、配列化
-    # Category.where(ancestry: nil).each do |parent|
-    #     @category_parent_array << parent.name
+  def index
+    @post=Post.all.order(id: "DESC")
+    @parents = Category.where(id: 1..6)
+    # @categories = Category.where(ancestry: params[:id])
+    # respond_to do |format|
+    #   format.json
     # end
   end
 
+  def new
+    @post = Post.new
+    @post.images.new
+    @parents = Category.where(id: 1..6)
+  end
+
   def create
-     Post.create(post_params)
+    # binding.pry
+    Post.create(post_params)
+    redirect_to posts_path
   end
 
   def show
+    @pospos = Post.find(params[:id])
+    @category = @pospos.category
   end
 
   def edit
@@ -29,28 +38,13 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :header_image, :content).merge(user_id: current_user.id)
+    params.require(:post).permit(
+      :title,
+      :header_image,
+      :content,
+      :category_id,
+      images_attributes:[ :id, :picture, :_destroy ]
+    ).merge(user_id: current_user.id)
   end
 
 end
-# def new
-#     if session[:item]
-#       @brand_name = session[:item]["brand_id"].nil? ? "" : Brand.find(session[:item]["brand_id"]).name
-#        session[:item].clear if @item = Item.new(session[:item])
-#     else
-#       @item = Item.new
-#     end
-#     3.times { @item.images.build }
-#   end
-
-#   def create
-#     # binding.pry
-#     @item = Item.new(params_item)
-#     if @item.save
-#       flash[:notice] = "商品を登録しました"
-#       redirect_to @item
-#     else
-#       session[:item] = @item
-#       redirect_to new_item_path, flash: { errors: @item.errors.full_messages }
-#     end
-#   end

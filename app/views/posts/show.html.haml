@@ -1,0 +1,14 @@
+.main
+  .main__content
+    .main__content__postBox
+      .main__content__postBox__title
+        = @pospos.title
+      .main__content__postBox__zone
+        = @pospos.category.parent.parent.name
+        > 
+        = @pospos.category.parent.name
+        > 
+        = @pospos.category.name
+      .main__content__postBox__images
+      .main__content__postBox__expla
+        = @pospos.content

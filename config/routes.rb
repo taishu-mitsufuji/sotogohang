@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  root 'posts#index'
   devise_for :users
-  root 'tops#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :posts, except: %i(index)
+  resources :posts
+  resources :categories, only: %i(index show) do
+    collection do
+      post :root_parent_category, :parents, :children
+    end
+  end
 end

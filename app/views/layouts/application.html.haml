@@ -9,9 +9,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
   .header
-    .header-title
-      = link_to "TABI-meshi", root_path, class: "header-title-text"
-    .header-right
+    .header__title
+      = link_to "ソトゴハン", root_path, class: "header-title-text"
+    .header__right
       - if user_signed_in?
         = link_to "新規投稿", new_post_path, class: "header-right-btn"
         = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-right-btn"

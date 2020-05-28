@@ -1,0 +1,174 @@
+.postBody {
+  padding: 50px;
+  display: flex;
+  background-color: #f5f5f5;
+  height: 100vh;
+  // width: 100%;
+  // justify-content: center;
+  &__sideBar {
+    width: 300px;
+    padding: 10px;
+    margin-right: 50px;
+    &__group {
+      padding-right: 60px;
+      &__list {
+        background-color: white;
+        list-style: none;
+        border-top: solid 1px #d3d3d3;
+        border-left: solid 1px #d3d3d3;
+        border-right: solid 1px #d3d3d3;
+        height: 50px;
+        align-items: center;
+        &__sent {
+          margin-left: 20px;
+
+        }
+      }
+      .abc {
+        border-bottom: solid 1px #d3d3d3;
+      }
+    }
+  }
+  &__main {
+    &__top {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    &__contents {
+      &__list {
+        margin-bottom: 20px;
+        display: flex;
+        width: 850px;
+        height: 150px;
+        padding: 0px 15px;
+        background-color: white;
+        align-items: center;
+        border: solid 1px #d3d3d3;
+        &__left {
+          height: 120px;
+        }
+        &__right {
+          height: 120px;
+          width: 700px;
+          margin-left: 20px;
+          &__title {
+            font-size: 20px;
+          }
+          &__category {
+
+          }
+          &__content {
+
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.post-content {
+  padding-left: 150px;
+  width: calc(100% - 200px);
+}
+
+.post-title {
+  margin: 10px 50px 10px;
+  margin-left: 350px;
+  font-size: 25px;
+}
+
+.content {
+  border: solid 1px;
+}
+
+.root-title {
+  width: calc(100% - 250px);
+  padding: 50px 100px;
+  overflow: auto;
+}
+
+.content {
+  margin: 30px 0px;
+}
+
+.post-top {
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+}
+
+#post_title {
+  width: 900px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+#post_content {
+  margin-right: 100px;
+  margin-bottom: 10px;
+}
+
+#post_area {
+  margin-bottom: 15px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.country {
+  margin-right: 13px;
+}
+
+.part {
+  margin-right: 13px;
+}
+
+// indexページ
+.content-format {
+  height: 130px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.photo {
+  height: 110px;
+  width: 110px;
+}
+
+.left-content {
+  margin-right: 5px;
+  padding: 10px 10px;
+}
+
+.right-content {
+  padding: 10px 10px;
+}
+
+.right-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.right-text {
+  margin-top: 8px;
+  font-size: 14px;
+  // width: 600px;
+  word-break: break-all;
+}

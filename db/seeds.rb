@@ -392,3 +392,33 @@ oceania_parao.children.create([{:name=>"コロール"}, {:name=>"マルキョク
 oceania_fiji.children.create([{:name=>"スバ"}, {:name=>"その他"}])
 oceania_marsharu.children.create([{:name=>"マジュロ"}, {:name=>"その他"}])
 oceania_mikuronesia.children.create([{:name=>"パリキール"}, {:name=>"その他"}])
+
+require 'faker'
+
+# ユーザー
+User.create!(
+  nickname: "出品者テストユーザー",
+  birth_date: Faker::Date.in_date_period,
+  email: "test1@gmail.com",
+  password: "123456",
+  password_confirmation:"123456"
+)
+User.create!(
+  nickname: "購入者テストユーザー",
+  birth_date: Faker::Date.in_date_period,
+  email: "test2@gmail.com",
+  password: "123456",
+  password_confirmation:"123456"
+)
+
+# 投稿
+
+# 20.times do
+#      Post.create(
+#         title: Faker::DragonBall.character,
+#         header_image: Faker::Avatar.image,
+#         user_id:"1",
+#         category_id:"1",
+#         content:"美味しいよ"
+#       )
+# end

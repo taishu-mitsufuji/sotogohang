@@ -1,0 +1,32 @@
+.postBody
+  .postBody__sideBar
+    %ul.postBody__sideBar__group
+      - @parents.each do |parent|
+        %li.postBody__sideBar__group__list
+          %p.postBody__sideBar__group__list__sent
+            = link_to "#{parent.name}", category_path(parent.id), { :class => 'incremental' }
+  .postBody__main
+    .postBody__main__top 
+      投稿一覧
+    .postBody__main__contents
+      - @post.each do |post|
+        = link_to post_path(post) do
+          .postBody__main__contents__list
+            .postBody__main__contents__list__left
+              %img{alt: "一覧写真", height: "120", src: "#{post.header_image}", width: "120"}
+              -# = image_tag post.header_image.image.url,id: "preview", alt: "", size: "100x95",class: "imagemage"
+              -# = image_tag @images[0].image.url ,id: "preview0", alt: "", size: "100x95",class: "imagemage"
+              -# = image_tag @event.eye_catch.to_s, size: "100x100", alt: "test"
+              -# %img{:src => "<haml_loud"}/
+              -# post.image  class=photo&gt;
+            .postBody__main__contents__list__right
+              .postBody__main__contents__list__right__title
+                = post.title
+              .postBody__main__contents__list__right__category
+                = post.category.parent.parent.name
+                > 
+                = post.category.parent.name
+                > 
+                = post.category.name
+              .postBody__main__contents__list__right__content
+                = post.content
