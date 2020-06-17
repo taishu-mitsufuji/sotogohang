@@ -2,23 +2,189 @@
   padding: 100px;
   display: flex;
   justify-content: center;
+  background-color: #f5f5f5;
   &__main {
+    background-color: white;
     &__form {
+      margin: 38px 38px;
       &__title {
         margin-bottom: 50px;
+        &__box {
+          margin-bottom: 10px;
+          display: flex;
+          &__label {
+            font-weight: bold;
+          }
+          &__must {
+            margin-left: 20px;
+            border: solid 1px #ccc;
+            color: white;
+            background-color: red;
+            border-radius: 3px;
+            width: 45px;
+            text-align: center;
+          }
+        }
+        &__field {
+          &__aaa {
+            font-size: 18px;
+            height: 42px;
+            width: 900px;
+          }
+          #post_title {
+            height: 42px;
+          }
+        }
       }
       &__category {
         margin-bottom: 50px;
+        &__box {
+          display: flex;
+          margin-bottom: 10px;
+          &__label {
+            font-weight: bold;
+          }
+          &__must {
+            margin-left: 20px;
+            border: solid 1px #ccc;
+            color: white;
+            background-color: red;
+            border-radius: 3px;
+            width: 45px;
+            text-align: center;
+          }
+        }
+        &__field {
+          #parentsArea {
+            height: 30px;
+            width: 200px;
+            margin-bottom: 10px;
+          }
+          #item_category_child {
+            height: 30px;
+            width: 200px;
+            display: block;
+            margin-bottom: 10px;
+          }
+          #item_category_child__children {
+            height: 30px;
+            width: 200px;
+            display: block;
+          }
+        }
       }
       &__headerImage {
-        margin-bottom: 50px;
+        margin-bottom: 100px;
+        &__box {
+          display: flex;
+          margin-bottom: 30px;
+          &__text {
+            font-weight: bold;
+          }
+          &__must {
+            margin-left: 20px;
+            border: solid 1px #ccc;
+            color: white;
+            background-color: red;
+            border-radius: 3px;
+            width: 45px;
+            text-align: center;
+          }
+        }
+        &__pre {
+          #previeww {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+          }
+        }
+        &__zone {
+          margin-left: 35px;
+        }
+        #img_file {
+          cursor: pointer;
+        }
       }
       &__image {
-        margin-bottom: 50px;
+        margin-bottom: 100px;
+        &__set {
+          display: flex;
+          margin-bottom: 20px;
+          &__text {
+            font-weight: bold;
+          }
+          &__must {
+            margin-left: 20px;
+            border-radius: 3px;
+            width: 145px;
+            text-align: center;
+          }
+        }
+        &__box {
+          margin-bottom: 20px;
+          &__obs {
+            #preview0 {
+              width: 100px;
+              height: 100px;
+              margin-left: 10px;
+            }
+            #preview1 {
+              width: 100px;
+              height: 100px;
+              margin-left: 20px;
+            }
+            #preview2 {
+              width: 100px;
+              height: 100px;
+              margin-left: 20px;
+            }
+            #preview3 {
+              width: 100px;
+              height: 100px;
+              margin-left: 20px;
+            }
+          }
+        }
+        &__boxes {
+          display: flex;
+          width: 500px;
+          justify-content: space-around;
+          margin-bottom: 20px;
+          &__set {
+          }
+        }
+        #img_file {
+          cursor: pointer;
+        }
+        &__del {
+          width: 500px;
+          display: flex;
+          justify-content: space-around;
+        }
       }
       &__content {
         margin-bottom: 50px;
+        &__box {
+          margin-bottom: 10px;
+          display: flex;
+          &__label {
+            font-weight: bold;
+          }
+          &__must {
+            margin-left: 20px;
+            border: solid 1px #ccc;
+            color: white;
+            background-color: red;
+            border-radius: 3px;
+            width: 45px;
+            text-align: center;
+          }
+        }
       }
+    }
+    &__back {
+      margin-left: 38px;
+      margin-bottom: 20px;
     }
   }
 }

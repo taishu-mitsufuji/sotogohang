@@ -1,2 +1,25 @@
-%p
-payapya
+.root
+  .postBody
+    .postBody__main
+      .postBody__main__top 
+        投稿一覧
+      .postBody__main__contents
+        - @posts.each do |post|
+          = link_to post_path(post) do
+            .postBody__main__contents__list
+              .postBody__main__contents__list__left
+                %img{alt: "一覧写真", height: "120", src: "#{post.header_image}", width: "120", class: "postBody__main__contents__list__left__radius"}
+              .postBody__main__contents__list__right
+                .postBody__main__contents__list__right__title
+                  = post.title
+                .postBody__main__contents__list__right__category
+                  = post.category.parent.parent.name
+                  > 
+                  = post.category.parent.name
+                  > 
+                  = post.category.name
+                .postBody__main__contents__list__right__content
+                  .postBody__main__contents__list__right__content__text
+                    = post.content
+      .pagienate
+      = paginate @posts

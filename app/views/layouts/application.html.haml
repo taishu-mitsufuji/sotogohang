@@ -10,7 +10,10 @@
   %body
   .header
     .header__title
-      = link_to "ソトゴハン", root_path, class: "header-title-text"
+      = link_to "ソトゴハン", root_path, class: "header__title__text"
+      .header__title__zone
+        %p.header__title__zone__text
+          エリア別に探す
     .header__right
       - if user_signed_in?
         = link_to "新規投稿", new_post_path, class: "header-right-btn"

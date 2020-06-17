@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
 
-  var target = document.querySelector(".incremental");
-  const targetPoint = document.querySelector(".postBody__sideBar__group__list");
+  var target = document.querySelector(".header__title__zone__text");
+  const targetPoint = document.querySelector(".header__title__zone");
   // li生成
   function createList(data, className, i, firstClassName = "") {
     let category = document.createElement("a");
@@ -22,7 +22,6 @@ window.addEventListener('load', function () {
   }
 
   target.addEventListener('mouseover', (e) => {
-    console.log(aaaaaaaaaa)
     e.stopPropagation();
     setTimeout(() => {
       if (document.querySelector(".parentsArea")) { $(".parentsArea").remove(); }
