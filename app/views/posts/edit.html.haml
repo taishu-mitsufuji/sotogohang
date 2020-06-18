@@ -1,0 +1,101 @@
+.itemBody
+  .itemBody__main
+    - if flash[:errors].present?
+      %ul.errors
+        - flash[:errors].each do |error|
+          %p
+            %i
+              = "* #{error}"
+    = form_with(model: @post, local: true,class: "itemBody__main__form") do |f|
+      .itemBody__main__form__title
+        .itemBody__main__form__title__box
+          = f.label :title, "タイトル ",class: "itemBody__main__form__title__box__label"
+          .itemBody__main__form__title__box__must
+            必須
+        .itemBody__main__form__title__field
+          = f.text_field :title, placeholder: "40字まで", maxlength: "40",class: "itemBody__main__form__title__field__aaa"
+      .itemBody__main__form__category
+        .itemBody__main__form__category__box
+          = f.label :category_id, "エリア選択",class: "itemBody__main__form__category__box__label"
+          .itemBody__main__form__category__box__must 
+            必須
+        .itemBody__main__form__category__field
+          -# %input{ type: "select", value: @post.category.parent.parent.name, id: "hidden_category_id" }
+          -# %input{ type: "select", value: @post.category.parent.name, id: "hidden_category_id" }
+          -# %input{ type: "select", value: @post.category.name, id: "hidden_category_id" }
+          = f.select :aaa, options_for_select(@parents.map{|c|[c[:name], c[:id]]}), {include_blank: '選択して下さい'}, {id: 'parentsArea'}
+      .itemBody__main__form__headerImage 
+        .itemBody__main__form__headerImage__box
+          .itemBody__main__form__headerImage__box__text
+            投稿ヘッダー画像
+          .itemBody__main__form__headerImage__box__must
+            必須
+        .itemBody__main__form__headerImage__pre
+          = image_tag @post.header_image.url ,id: "previeww", size: "100x100"
+        .itemBody__main__form__headerImage__zone
+          = f.label :header_image, "画像",class: "itemBody__main__form__headerImage__zone__set__label" do
+            %i.fas.fa-camera.fa-2x#img_file
+              = f.file_field :header_image, class: "itemBody__main__form__headerImage__zone__set__label__field", style: "display: none"
+
+      .itemBody__main__form__image
+        .itemBody__main__form__image__set
+          .itemBody__main__form__image__set__text
+            画像
+          .itemBody__main__form__image__set__must
+            ※4枚まで選択可能
+        .itemBody__main__form__image__box#image-box__container
+          - if @images.count == 1
+            .itemBody__main__form__image__box__obs
+              = image_tag @images[0].picture.url ,id: "preview0", size: "100x100"
+              %img#preview1/
+              %img#preview2/
+              %img#preview3/
+          - elsif @images.count == 2
+            .itemBody__main__form__image__box__obs
+              = image_tag @images[0].picture.url ,id: "preview0", size: "100x100"
+              = image_tag @images[1].picture.url ,id: "preview1", size: "100x100"
+              %img#preview2/
+              %img#preview3/
+          - elsif @images.count == 3
+            .itemBody__main__form__image__box__obs
+              = image_tag @images[0].picture.url ,id: "preview0", size: "100x100"
+              = image_tag @images[1].picture.url ,id: "preview1", size: "100x100"
+              = image_tag @images[2].picture.url ,id: "preview2", size: "100x100"
+              %img#preview3/
+          - elsif @images.count == 4
+            .itemBody__main__form__image__box__obs
+              = image_tag @images[0].picture.url ,id: "preview0", size: "100x100"
+              = image_tag @images[1].picture.url ,id: "preview1", size: "100x100"
+              = image_tag @images[2].picture.url ,id: "preview2", size: "100x100"
+              = image_tag @images[3].picture.url ,id: "preview3", size: "100x100"
+          - elsif @images.count == 0
+            .itemBody__main__form__image__box__obs
+              %img#preview0/
+              %img#preview1/
+              %img#preview2/
+              %img#preview3/
+        .itemBody__main__form__image__boxes
+          = f.fields_for :images,class: "itemBody__main__form__image__box__form" do |i|
+            .itemBody__main__form__image__boxes__set
+              = i.label :picture, "画像",class: "itemBody__main__form__image__box__form__set__label" do
+                %i.fas.fa-camera.fa-2x#img_file
+                  = i.file_field :picture,class: "itemBody__main__form__image__box__form__set__field", style: "display: none"
+        -# .itemBody__main__form__image__del
+        -#   %button{id: "item_image_delete0", type: "button"}削除
+        -#   %button{id: "item_image_delete1", type: "button"}削除
+        -#   %button{id: "item_image_delete2", type: "button"}削除
+        -#   %button{id: "item_image_delete3", type: "button"}削除
+      .itemBody__main__form__content
+        .itemBody__main__form__content__box
+          = f.label :content, "説明",class: "itemBody__main__form__content__box__label"
+          .itemBody__main__form__content__box__must
+            必須
+        .itemBody__main__form__content__field
+          = f.text_area :content,cols:"110", rows:"21", maxlength:'1000', placeholder:"お店・料理の説明（必須 1,000文字以内）\n（場所、お値段、注意点など）\n\n 例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+      = f.submit "更新する", class: "itemBody__main__form__exhibition"
+    -if params[:acion] == "edit"
+      = link_to "items/#{@item.id}",method: :delete, data: { confirm:"商品を削除してよろしいですか?" } do
+        %button{class: "itemBody__main__form__delete", type: "submit"}削除
+    %br/
+    .itemBody__main__back
+      = link_to "もどる", :back,class: "itemBody__main__back__btn"

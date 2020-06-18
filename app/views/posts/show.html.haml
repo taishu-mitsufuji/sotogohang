@@ -2,13 +2,33 @@
   .main__content
     .main__content__postBox
       .main__content__postBox__title
-        = @pospos.title
+        = @post.title
       .main__content__postBox__zone
-        = @pospos.category.parent.parent.name
+        = @post.category.parent.parent.name
         > 
-        = @pospos.category.parent.name
+        = @post.category.parent.name
         > 
-        = @pospos.category.name
+        = @post.category.name
       .main__content__postBox__images
+        .main__content__postBox__images__image
+          - if @images.count == 1
+            %img{alt: "一覧写真", height: "330", src: "#{@images[0].picture}", width: "330", class:"main__content__postBox__images__image__img"}
+          - elsif @images.count == 2
+            %img{alt: "一覧写真", height: "330", src: "#{@images[0].picture}", width: "330", class:"main__content__postBox__images__image__img"}
+            %img{alt: "一覧写真", height: "330", src: "#{@images[1].picture}", width: "330", class:"main__content__postBox__images__image__img"}
+          - elsif @images.count == 3
+            %img{alt: "一覧写真", height: "330", src: "#{@images[0].picture}", width: "330", class:"main__content__postBox__images__image__img"}
+            %img{alt: "一覧写真", height: "330", src: "#{@images[1].picture}", width: "330", class:"main__content__postBox__images__image__img"}
+            %img{alt: "一覧写真", height: "330", src: "#{@images[2].picture}", width: "330", class:"main__content__postBox__images__image__img"}
+          - elsif @images.count == 4
+            %img{alt: "一覧写真", height: "330", src: "#{@images[0].picture}", width: "330", class:"main__content__postBox__images__image__img"}
+            %img{alt: "一覧写真", height: "330", src: "#{@images[1].picture}", width: "330", class:"main__content__postBox__images__image__img"}
+            %img{alt: "一覧写真", height: "330", src: "#{@images[2].picture}", width: "330", class:"main__content__postBox__images__image__img"}
+            %img{alt: "一覧写真", height: "330", src: "#{@images[3].picture}", width: "330", class:"main__content__postBox__images__image__img"}
       .main__content__postBox__expla
-        = @pospos.content
+        = simple_format(@post.content)
+      .main__content__postBox__edit
+      - if user_signed_in? && current_user.id == @post.user.id
+        .main__content__postBox__edit__detail
+          = link_to "編集する" , edit_post_path(@post),class:"main__content__postBox__edit__detail__editBtn"
+          = link_to "削除する" , post_path(@post),method: :delete, class: "main__content__postBox__edit__detail__deleteBtn", data: { confirm:"商品を削除してよろしいですか?" }

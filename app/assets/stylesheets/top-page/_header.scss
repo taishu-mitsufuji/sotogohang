@@ -6,19 +6,28 @@
   justify-content: space-between;
   border-bottom: solid 0.5px;
   border-color: #d3d3d3;
-  line-height: 100px;
   a{text-decoration: none;}
   &__title {
-  margin-left: 39px;
-  width: 200px;
-  font-size: 25px;
-  line-height: 100px;
-  a{color: black;}
+    margin-left: 39px;
+    width: 200px;
+    font-size: 25px;
+    padding: 20px 0px;
+    a{color: black;}
+    &__text {
+    }
+    &__zone {
+      display: block;
+      margin-bottom: 30px;
+      font-size: 14px;
+      margin-left: 10px;
+      margin-top: 15px;
+      position: relative;
+    }
   }
   &__right  {
-  width: 200px;
-  text-align: center;
-  line-height: 100px;
-  a{color: black;}
+    width: 200px;
+    text-align: center;
+    line-height: 100px;
+    a{color: black;}
   }
 }
