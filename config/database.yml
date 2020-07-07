@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: sotogohang_production
-  username: sotogohang
-  password: <%= ENV['SOTOGOHANG_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
